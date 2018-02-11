@@ -31,7 +31,10 @@ SET (SRC engine/chessboard.cpp
     engine/aiplayer.cpp    
     engine/humanplayer.cpp
     engine/perfomancemeasurement.cpp
-    engine/config.cpp)
+    engine/config.cpp
+    engine/asyncplayer.cpp
+    engine/asyncaiplayer.cpp
+    engine/asyncgame.cpp)
 
 include_directories("engine")
 include_directories("tests")
@@ -76,11 +79,14 @@ add_executable(unit_test tests/tests.cpp ${SRC} ${HEADER})
 target_link_libraries(unit_test gtest_main ${Boost_LIBRARIES})
 
 #####Examples
-add_executable(example_ai_vs_human examples/ai_vs_human.cpp ${SRC} ${HEADER})
-target_link_libraries(example_ai_vs_human ${Boost_LIBRARIES})
+#add_executable(example_ai_vs_human examples/ai_vs_human.cpp ${SRC} ${HEADER})
+#target_link_libraries(example_ai_vs_human ${Boost_LIBRARIES})
 
-add_executable(example_ai_vs_ai examples/ai_vs_ai.cpp ${SRC} ${HEADER})
-target_link_libraries(example_ai_vs_ai ${Boost_LIBRARIES})
+#add_executable(example_ai_vs_ai examples/ai_vs_ai.cpp ${SRC} ${HEADER})
+#target_link_libraries(example_ai_vs_ai ${Boost_LIBRARIES})
+
+add_executable(example_ai_vs_ai_async examples/ai_vs_ai_async.cpp ${SRC} ${HEADER})
+target_link_libraries(example_ai_vs_ai_async ${Boost_LIBRARIES})
 
 #add_custom_command(
 #     TARGET unit_test

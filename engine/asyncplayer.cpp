@@ -1,7 +1,6 @@
 #include "asyncplayer.h"
 
-AsyncPlayer::AsyncPlayer(int color):
-    color(color)
+AsyncPlayer::AsyncPlayer()
 {
 
 }
@@ -9,16 +8,6 @@ AsyncPlayer::AsyncPlayer(int color):
 AsyncPlayer::~AsyncPlayer()
 {
 
-}
-
-int AsyncPlayer::getColor() const
-{
-    return color;
-}
-
-void AsyncPlayer::setColor(int value)
-{
-    color = value;
 }
 
 std::shared_ptr<boost::asio::io_service::strand> AsyncPlayer::getStrand() const

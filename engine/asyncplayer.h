@@ -17,7 +17,8 @@ public:
     typedef std::function <void (EndStatus) >   ResultReadyHandler;
     typedef std::function<void()> ReadyHandler;
 
-    AsyncPlayer(int color);
+    //AsyncPlayer(int color);
+    AsyncPlayer();
     virtual ~AsyncPlayer();
 
     virtual void asyncPrepare(const ChessBoard & board, ReadyHandler handler) = 0;
@@ -31,14 +32,14 @@ public:
     virtual void cancel() = 0;
 
 
-    int getColor() const;
-    void setColor(int value);
+    //int getColor() const;
+    //void setColor(int value);
 
     std::shared_ptr<boost::asio::io_service::strand> getStrand() const;
     void setStrand(const std::shared_ptr<boost::asio::io_service::strand> &value);
 
 protected:
-    int color;
+    //int color;
     std::shared_ptr<boost::asio::io_service::strand> strand;
 };
 typedef std::shared_ptr<AsyncPlayer> TAsyncPlayerPtr;
