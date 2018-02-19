@@ -7,14 +7,14 @@ using namespace std;
 using namespace boost::asio;
 int main()
 {
-    auto io_ptr = std::make_shared<io_service>();
+    auto service = std::make_shared<io_service>();
     thread threads[5];
 
 
-    shared_ptr<AsyncAiPlayer> players[2] = {make_shared<AsyncAiPlayer>(WHITE, 2), make_shared<AsyncAiPlayer>(BLACK, 2)};
-    AsyncGame game(io_ptr, players[0], players[1]);
-    /*
-    game.start([io_ptr](AsyncPlayer::EndStatus end_status) {
+    shared_ptr<AsyncAiPlayer> players[2] = {make_shared<AsyncAiPlayer>(WHITE, 1), make_shared<AsyncAiPlayer>(BLACK, 1)};
+    AsyncGame game(service, players[0], players[1]);
+
+    game.start([service](AsyncPlayer::EndStatus end_status) {
         switch (end_status) {
         case AsyncPlayer::WHITE_WIN:
             cout << "White win" << endl;
@@ -26,17 +26,19 @@ int main()
             cout << "White loose" << endl;
             break;
         }
-        io_ptr->stop();
+        service->stop();
     });
-    */
+  
     for (thread & thrd : threads) {
-        thrd = thread([io_ptr]() {
-            io_ptr->run();
+        thrd = thread([service]() {
+            service->run();
         });
     }
 
     for (thread & thrd : threads) {
         thrd.join();
     }
+
+    getchar();
     return 0;
 }

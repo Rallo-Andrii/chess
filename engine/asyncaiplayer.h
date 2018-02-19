@@ -3,7 +3,7 @@
 #include "asyncplayer.h"
 #include "aiplayer.h"
 
-class AsyncAiPlayer : public AsyncPlayer, protected AIPlayer
+class AsyncAiPlayer : public AsyncPlayer, /*protected*/ public AIPlayer
 {
 public:
     AsyncAiPlayer(int color, int search_depth);
@@ -11,7 +11,7 @@ public:
 
     virtual void asyncPrepare(const ChessBoard & board, ReadyHandler handler) override;
     virtual void asyncGetNext(const ChessBoard & board, MoveReadyHandler handler) override;
-    virtual void asyncShowMove(const ChessBoard & board, const Move & move, ReadyHandler handler) override;
+    virtual void asyncShowMove(const ChessBoard & board, Move & move, ReadyHandler handler) override;
     virtual void asyncShowResult(const ChessBoard & board, EndStatus status, ReadyHandler handler) override;
 
     /**
