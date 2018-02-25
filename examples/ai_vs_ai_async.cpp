@@ -11,18 +11,18 @@ int main()
     thread threads[5];
 
 
-    shared_ptr<AsyncAiPlayer> players[2] = {make_shared<AsyncAiPlayer>(WHITE, 1), make_shared<AsyncAiPlayer>(BLACK, 1)};
+    shared_ptr<AsyncPlayer> players[2] = {make_shared<AsyncAiPlayer>(WHITE, 1), make_shared<AsyncAiPlayer>(BLACK, 1)};
     AsyncGame game(service, players[0], players[1]);
 
-    game.start([service](AsyncPlayer::EndStatus end_status) {
+    game.start([service](AsyncGame::EndStatus end_status) {
         switch (end_status) {
-        case AsyncPlayer::WHITE_WIN:
+        case AsyncGame::WHITE_WIN:
             cout << "White win" << endl;
             break;
-        case AsyncPlayer::DRAW:
+        case AsyncGame::DRAW:
             cout << "A draw" << endl;
             break;
-        case AsyncPlayer::WHITE_LOOSE:
+        case AsyncGame::WHITE_LOOSE:
             cout << "White loose" << endl;
             break;
         }

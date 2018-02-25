@@ -8,14 +8,8 @@
 class AsyncPlayer /*: public ChessPlayer*/
 {
 public:
-    enum EndStatus {
-        NONE = 0,
-        WHITE_WIN,
-        DRAW,
-        WHITE_LOOSE
-    };
     typedef std::function <void (const Move&) > MoveReadyHandler;
-    typedef std::function <void (EndStatus) >   ResultReadyHandler;
+    //typedef std::function <void (EndStatus) >   ResultReadyHandler;
     typedef std::function<void()> ReadyHandler;
 
     //AsyncPlayer(int color);
@@ -25,7 +19,7 @@ public:
     virtual void asyncPrepare(const ChessBoard & board, ReadyHandler handler) = 0;
     virtual void asyncGetNext(const ChessBoard & board, MoveReadyHandler handler) = 0;
     virtual void asyncShowMove(const ChessBoard & board, Move & move, ReadyHandler handler) = 0;
-    virtual void asyncShowResult(const ChessBoard & board, EndStatus status, ReadyHandler handler) = 0;
+    //virtual void asyncShowResult(const ChessBoard & board, EndStatus status, ReadyHandler handler) = 0;
 
     /**
      * @brief cancel -- cancels any of the asunc operation

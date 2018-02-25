@@ -43,15 +43,17 @@ void AsyncAiPlayer::asyncShowMove(const ChessBoard & board, Move & move, ReadyHa
     strand->post(show_next_move_async);
 }
 
+/*
 void AsyncAiPlayer::asyncShowResult(const ChessBoard & board, EndStatus status, ReadyHandler handler)
 {
     handler();
 }
+*/
 
 /**
  * @brief cancel -- cancels any of the asunc operation
  */
 void AsyncAiPlayer::cancel()
 {
-
+    strand->get_io_service().stop();
 }
