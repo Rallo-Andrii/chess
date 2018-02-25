@@ -34,6 +34,8 @@ SET (SRC engine/chessboard.cpp
     engine/config.cpp
     engine/asyncplayer.cpp
     engine/asyncaiplayer.cpp
+    engine/asyncclientaiplayer.cpp
+    engine/asyncserveraiplayer.cpp
     engine/asyncgame.cpp)
 
 include_directories("engine")
@@ -85,8 +87,14 @@ target_link_libraries(unit_test gtest_main ${Boost_LIBRARIES})
 #add_executable(example_ai_vs_ai examples/ai_vs_ai.cpp ${SRC} ${HEADER})
 #target_link_libraries(example_ai_vs_ai ${Boost_LIBRARIES})
 
-add_executable(example_ai_vs_ai_async examples/ai_vs_ai_async.cpp ${SRC} ${HEADER})
-target_link_libraries(example_ai_vs_ai_async ${Boost_LIBRARIES})
+#add_executable(example_ai_vs_ai_async examples/ai_vs_ai_async.cpp ${SRC} ${HEADER})
+#target_link_libraries(example_ai_vs_ai_async ${Boost_LIBRARIES})
+
+add_executable(example_async_server examples/async_server.cpp ${SRC} ${HEADER})
+target_link_libraries(example_async_server ${Boost_LIBRARIES})
+
+add_executable(example_async_client examples/async_client.cpp ${SRC} ${HEADER})
+target_link_libraries(example_async_client ${Boost_LIBRARIES})
 
 #add_custom_command(
 #     TARGET unit_test
